@@ -16,7 +16,28 @@ agentclick -- npm run dev  # anything else
 
 ## Install
 
-### macOS
+### One-liner (macOS + Ubuntu)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/iamhsouna/agentclick/main/install.sh | bash
+
+# verify
+agentclick --test        # should play two clicks
+agentclick --dry-run     # shows player + sound paths
+```
+
+The installer auto-detects `afplay` (macOS) vs `paplay`/`pw-play`/`aplay` (Ubuntu), picks `sudo` when available or falls back to `~/.local/bin`, and installs sounds next to the binary *and* to the standard share dir.
+
+Custom location:
+
+```bash
+DEST=~/.local/bin curl -fsSL https://raw.githubusercontent.com/iamhsouna/agentclick/main/install.sh | bash
+# or
+curl -fsSL https://raw.githubusercontent.com/iamhsouna/agentclick/main/install.sh -o install.sh
+bash install.sh --dest /opt/bin
+```
+
+### Manual — macOS
 
 No dependencies — `afplay` is built in.
 
@@ -30,7 +51,7 @@ echo "alias claude='agentclick claude'" >> ~/.zshrc
 echo "alias pi='agentclick pi'" >> ~/.zshrc
 ```
 
-### Ubuntu / Debian (22.04+, also Raspberry Pi OS)
+### Manual — Ubuntu / Debian (22.04+, also Raspberry Pi OS)
 
 Needs one audio player. Most desktops already have one; pick the first that works:
 
